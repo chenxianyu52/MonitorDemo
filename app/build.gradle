@@ -30,6 +30,7 @@ dependencies {
     api rootProject.ext.dependencies["appcompat-v7"]
     api project(':tracker')
     api project(':mylibrary')
+    api project(':LibMonitor')
 }
 
 

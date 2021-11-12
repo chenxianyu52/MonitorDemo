@@ -19,7 +19,7 @@ class MonitorClassVisitor extends ClassVisitor {
     public HashSet<String> visitedFragmentMethods = new HashSet<>()
 
     public MonitorClassVisitor(ClassVisitor classVisitor) {
-        super(Opcodes.ASM5, classVisitor)
+        super(Opcodes.ASM6, classVisitor)
         this.classVisitor = classVisitor
     }
 
@@ -35,7 +35,7 @@ class MonitorClassVisitor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String desc, String signature,
                                      String[] exceptions) {
         MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions)
-        methodVisitor = new AdviceAdapter(Opcodes.ASM5, methodVisitor, access, name, desc) {
+        methodVisitor = new AdviceAdapter(Opcodes.ASM6, methodVisitor, access, name, desc) {
             @Override
             protected void onMethodExit(int i) {
                 super.onMethodExit(i)
@@ -119,7 +119,7 @@ class MonitorClassVisitor extends ClassVisitor {
      */
     void handleViewEvent(String name, MethodVisitor mv) {
         mv.visitVarInsn(Opcodes.ALOAD, 1)
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/foolchen/lib/tracker/utils/ViewEventUtil", "onClick", "(Landroid/view/View;)V", false);
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/paic/zhifu/wallet/activity/myapp/ViewEventUtil", "onClick", "(Landroid/view/View;)V", false);
     }
 
 
